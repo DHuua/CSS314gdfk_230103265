@@ -1,0 +1,9 @@
+{
+  "N": 1472,
+  "M": 736,
+  "runs": 3,
+  "t_naive_ns": 445549200,
+  "t_interchanged_ns": 332080300,
+  "speedup": 1.3416911512065004,
+  "max_abs_diff": 0.0
+}
