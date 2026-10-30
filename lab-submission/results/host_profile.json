@@ -1,0 +1,32 @@
+{
+  "model_name": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "microarch_hint": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "physical_cores": 8,
+  "caches": {
+    "L1d": {
+      "size_bytes": 49152,
+      "line_bytes": 64
+    },
+    "L2": {
+      "size_bytes": 1310720,
+      "line_bytes": 64
+    },
+    "L3": {
+      "size_bytes": 12582912,
+      "line_bytes": 64
+    }
+  },
+  "base_freq_mhz": 2100.0,
+  "logical_threads": 12,
+  "smt_enabled": true,
+  "os": {
+    "system": "Windows",
+    "kernel": "11",
+    "version": "10.0.26300",
+    "machine": "AMD64"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.13.7"
+  }
+}
