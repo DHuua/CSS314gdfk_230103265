@@ -28,5 +28,7 @@
   "python": {
     "implementation": "CPython",
     "version": "3.13.7"
-  }
+  },
+  "cpu_model": "13th Gen Intel(R) Core(TM) i5-13420H",
+  "cache_line_bytes": 64
 }

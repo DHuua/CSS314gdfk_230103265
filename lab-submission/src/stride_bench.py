@@ -12,7 +12,7 @@ def main():
     n = data.size
     out = ROOT / "results"
     out.mkdir(exist_ok=True)
-    rows = ["stride\telements_touched\tmedian_time_ns\tlatency_ns_per_element"]
+    rows = ["stride\telements_touched\tmedian_time_ns\tlatency_ns"]
 
     for s in STRIDES:
         view = data[::s]

@@ -1,4 +1,5 @@
 {
+  "arithmetic_intensity": 0.25,
   "kernel": "5-point Jacobi stencil, double precision",
   "flops_per_point": 4,
   "dram_bytes_per_point": 16,
@@ -10,10 +11,10 @@
   "l3_mb": 12.0,
   "working_set_exceeds_l3": true,
   "bandwidth_roof_gflops": 20.8,
-  "achieved_gflops_P1": 1.7667288749980454,
+  "achieved_gflops_P1": 1.962729796645743,
   "regime": "memory-bandwidth bound",
   "scaling_fit": {
-    "serial_fraction_s_median": 0.1999434228154242,
-    "S_max": 5.001414829849843
+    "serial_fraction_s_median": 0.27784822723395447,
+    "S_max": 3.599087206548838
   }
 }

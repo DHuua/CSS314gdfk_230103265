@@ -161,6 +161,9 @@ def main():
                   "version": platform.version(), "machine": platform.machine()}
     info["python"] = {"implementation": platform.python_implementation(),
                       "version": platform.python_version()}
+    info["cpu_model"] = info.get("model_name")
+    info["cache_line_bytes"] = next((c["line_bytes"] for c in info.get("caches", {}).values()
+                                 if c.get("line_bytes")), 64)
 
     out = Path(__file__).resolve().parent.parent / "results"
     out.mkdir(exist_ok=True)

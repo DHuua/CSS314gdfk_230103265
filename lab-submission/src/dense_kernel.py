@@ -53,7 +53,8 @@ def main():
 
     res = {"N": N, "M": M, "runs": RUNS,
            "t_naive_ns": t_naive, "t_interchanged_ns": t_inter,
-           "speedup": t_naive / t_inter, "max_abs_diff": max_diff}
+           "speedup": t_naive / t_inter, "max_abs_diff": max_diff,
+           "naive_time_s": t_naive / 1e9, "interchanged_time_s": t_inter / 1e9,}
     (ROOT / "results" / "loop_interchange.json").write_text(json.dumps(res, indent=2))
     print(json.dumps(res, indent=2))
     assert max_diff < 1e-12

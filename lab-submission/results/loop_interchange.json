@@ -2,8 +2,10 @@
   "N": 1472,
   "M": 736,
   "runs": 3,
-  "t_naive_ns": 445549200,
-  "t_interchanged_ns": 332080300,
-  "speedup": 1.3416911512065004,
-  "max_abs_diff": 0.0
+  "t_naive_ns": 494195200,
+  "t_interchanged_ns": 315643300,
+  "speedup": 1.565676192081378,
+  "max_abs_diff": 0.0,
+  "naive_time_s": 0.4941952,
+  "interchanged_time_s": 0.3156433
 }

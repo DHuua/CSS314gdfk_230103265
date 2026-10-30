@@ -50,30 +50,33 @@ def karp_flatt(S, P):
 def main():
     arr = RawArray(ctypes.c_int64, 80)
     off = ((-ctypes.addressof(arr)) % 64) // 8
-
-    rows = ["variant\tP\tK\tmedian_time_s\ttotal_count\texpected_count\t"
-            "S_scaled\te_scaled\tS_literal\te_literal"]
-    for variant in ("unpadded", "padded", "privatized"):
-        t1 = None
+    variants = ("unpadded", "padded", "privatized")
+    T = {}
+    for v in variants:
         for P in PROCS:
             times, total = [], None
             for _ in range(REPS):
-                t, total = run_once(variant, P, arr, off)
+                t, total = run_once(v, P, arr, off)
                 times.append(t)
-            med = statistics.median(times)
-            assert total == P * K, f"{variant} P={P}: {total} != {P * K}"
-            if P == 1:
-                t1 = med
-                s_sc = e_sc = s_li = e_li = ""
-            else:
-                S_sc = P * t1 / med               
-                S_li = t1 / med                     
-                s_sc, e_sc = f"{S_sc:.4f}", f"{karp_flatt(S_sc, P):.4f}"
-                s_li, e_li = f"{S_li:.4f}", f"{karp_flatt(S_li, P):.4f}"
-            rows.append(f"{variant}\t{P}\t{K}\t{med / 1e9:.4f}\t{total}\t{P * K}\t"
-                        f"{s_sc}\t{e_sc}\t{s_li}\t{e_li}")
-            print(rows[-1])
+            assert total == P * K, f"{v} P={P}: {total} != {P * K}"
+            T[v, P] = statistics.median(times) / 1e9
 
+    header = ["P", "K", "expected_count"]
+    for v in variants:
+        header += [f"time_s_{v}", f"e_{v}", f"e_literal_{v}"]
+    rows = ["\t".join(header)]
+    for P in PROCS:
+        cells = [str(P), str(K), str(P * K)]
+        for v in variants:
+            t, t1 = T[v, P], T[v, 1]
+            if P == 1:
+                cells += [f"{t:.4f}", "NA", "NA"]
+            else:
+                e_scaled = karp_flatt(P * t1 / t, P)   
+                e_literal = karp_flatt(t1 / t, P)     
+                cells += [f"{t:.4f}", f"{e_scaled:.4f}", f"{e_literal:.4f}"]
+        rows.append("\t".join(cells))
+        print(rows[-1])
     (ROOT / "results" / "false_sharing_karp_flatt.tsv").write_text("\n".join(rows) + "\n")
 
 

@@ -135,6 +135,7 @@ def main():
                        )["caches"]["L3"]["size_bytes"] / 2**20
     achieved_gflops = FLOPS_PER_POINT * (N - 2) ** 2 * ITERS / t1 / 1e9
     summary = {
+        "arithmetic_intensity": ai,
         "kernel": "5-point Jacobi stencil, double precision",
         "flops_per_point": FLOPS_PER_POINT,
         "dram_bytes_per_point": BYTES_PER_POINT,
